@@ -2,6 +2,8 @@ import { Component } from 'react';
 import { View, } from 'react-native';
 import { TextInput ,Button} from "@react-native-material/core";
 
+import { UserApi } from '../../../helper/api/user';
+import { setStorage, getStorage } from '../../../helper/api/storage';
 
 export  class Login extends Component {
 
@@ -11,6 +13,27 @@ export  class Login extends Component {
             email: '',
             password: '',
         }
+    }
+
+    async componentDidMount(){
+        let user = await getStorage('user')
+        console.log(user.token)
+    }
+
+    handleLogin = async () => {
+        const {email, password} = this.state
+        const {navigation} = this.props
+        const userApi = new UserApi;
+        const [response, error] = await userApi.login(email, password)
+        if (response && response.token){
+            console.log(response)
+            setStorage('user', response)
+        }
+        console.log('user: ', await getStorage('user'))
+        if (error){
+            console.log("login error: ", error)
+        }
+
     }
 
     render(){
@@ -25,11 +48,7 @@ export  class Login extends Component {
                 value={this.state.password}
                 onChangeText={(password)=>this.setState({password})}
                 />
-                <Button title="Login" onPress={
-                    ()=>{
-                        this.props.navigation.navigate('Home')
-                    }
-                } />
+                <Button title="Login" onPress={this.handleLogin} />
             </View>
             
         )

@@ -3,7 +3,7 @@ import { View,Text, ScrollView } from 'react-native';
 import { TextInput, Button } from "@react-native-material/core";
 
 import { UserApi } from '../../../helper/api/user';
-import { setStorage, getStorage } from '../../../helper/api/storage';
+
 
 export  class Register extends Component {
 
@@ -17,10 +17,9 @@ export  class Register extends Component {
         }
     }
 
-    async componentDidMount(){
-        let user = await getStorage('user')
-        console.log(user)
-    }
+    
+
+    
 
     handleRegister = async () => {
         const { firstname, lastname, email, password } = this.state;
@@ -30,11 +29,8 @@ export  class Register extends Component {
         const [response, error] = await userApi.register(firstname, lastname, email, password);
         console.log("response",response)
         if (response){
-            await setStorage('user', response)
-            navigation.navigate('Home')
+            navigation.navigate('Login')
         } 
-
-        
         if (error){
             console.log(error)
         }
