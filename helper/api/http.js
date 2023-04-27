@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const API_URL = 'http://techtalk.exhortlabs.com/api/';
 
 export class Request {
@@ -12,7 +14,7 @@ export class Request {
 
 		this.axios.defaults.headers.common['Content-Type'] = `application/json`;
 		this.axios.defaults.headers.common['Accept'] = `application/json`;
-    this.axios.defaults.headers.common['Access-Control-Allow-Origin'] = `*`;
+    	this.axios.defaults.headers.common['Access-Control-Allow-Origin'] = `*`;
 	}
 
 	// { key: string, value: string }[]

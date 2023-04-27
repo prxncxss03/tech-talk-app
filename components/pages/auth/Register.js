@@ -1,7 +1,9 @@
 import { Component } from 'react';
-import { View,Text } from 'react-native';
-import { TextInput } from "@react-native-material/core";
+import { View,Text, ScrollView } from 'react-native';
+import { TextInput, Button } from "@react-native-material/core";
 
+import { UserApi } from '../../../helper/api/user';
+import { setStorage, getStorage } from '../../../helper/api/storage';
 
 export  class Register extends Component {
 
@@ -15,9 +17,34 @@ export  class Register extends Component {
         }
     }
 
+    async componentDidMount(){
+        let user = await getStorage('user')
+        console.log(user)
+    }
+
+    handleRegister = async () => {
+        const { firstname, lastname, email, password } = this.state;
+        const { navigation } = this.props;
+
+        const userApi = new UserApi;
+        const [response, error] = await userApi.register(firstname, lastname, email, password);
+        console.log("response",response)
+        if (response){
+            await setStorage('user', response)
+            navigation.navigate('Home')
+        } 
+
+        
+        if (error){
+            console.log(error)
+        }
+    
+    }
+
+
     render(){
         return(
-            <View>
+            <ScrollView>
                 <Text>
                     Register
                 </Text>
@@ -37,9 +64,13 @@ export  class Register extends Component {
                 />
                 <TextInput variant="standard" label="Password" style={{ margin: 16 }}
                 value={this.state.password}
+                secureTextEntry={true}
                 onChangeText={(password)=>this.setState({password})}
                 />
-            </View>
+                <Button title="Register" onPress={
+                    this.handleRegister
+                } />
+            </ScrollView>
             
         )
     }

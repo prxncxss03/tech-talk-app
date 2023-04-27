@@ -27,7 +27,7 @@ export  class Login extends Component {
                 />
                 <Button title="Login" onPress={
                     ()=>{
-                        this.props.navigation.navigate('Register')
+                        this.props.navigation.navigate('Home')
                     }
                 } />
             </View>
