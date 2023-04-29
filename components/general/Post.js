@@ -1,5 +1,7 @@
 import {Component} from 'react'
 import { View,Text } from 'react-native';
+
+import {styles} from '../Style'
 export class Post extends Component {
     constructor(){
         super();
@@ -7,8 +9,10 @@ export class Post extends Component {
 
     render(){
         return(
-            <View>
-                <Text>{this.props.content}</Text>
+            <View style={styles.postWrapper}>
+                <Text style={styles.content}>{this.props.content}</Text>
+                <Text>{this.props.author}</Text>
+                <Text>{this.props.date}</Text>
             </View>
         )
     }

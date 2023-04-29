@@ -44,7 +44,7 @@ export class Request {
 
 	async res(method, url, payload, config) {
 		url = `${API_URL}${url}`;
-    console.log(`Request: ${url}`);
+    	console.log(`Request: ${url}`);
 		var data, error, resp;
 		try {
 			resp = await this.axios[method](url, payload, config);

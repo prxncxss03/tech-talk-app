@@ -9,6 +9,7 @@ import { Home } from './components/pages/home/Home';
 //pages
 import { Login } from './components/pages/auth/Login';
 import { Register } from './components/pages/auth/Register';
+import { AddPost } from './components/pages/home/AddPost';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="AddPost" component={AddPost} options={{ headerShown: false }} />
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>

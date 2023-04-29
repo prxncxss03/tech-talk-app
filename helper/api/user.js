@@ -1,5 +1,6 @@
 import {Request} from './http';
 import {getStorage} from './storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 var request = new Request;
 
@@ -16,6 +17,6 @@ export class UserApi {
     const user = await getStorage('user');
     request = new Request(user.token);
 
-    return request.post('logout');
+    return request.get(`logout`);
   }
 }

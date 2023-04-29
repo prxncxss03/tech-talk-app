@@ -17,9 +17,6 @@ export  class Register extends Component {
         }
     }
 
-    
-
-    
 
     handleRegister = async () => {
         const { firstname, lastname, email, password } = this.state;

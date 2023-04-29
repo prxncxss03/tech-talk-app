@@ -4,6 +4,7 @@ import { TextInput ,Button} from "@react-native-material/core";
 
 import { UserApi } from '../../../helper/api/user';
 import { setStorage, getStorage } from '../../../helper/api/storage';
+import { styles } from './../../Style'
 
 export  class Login extends Component {
 
@@ -28,6 +29,7 @@ export  class Login extends Component {
         if (response && response.token){
             console.log(response)
             setStorage('user', response)
+            navigation.navigate('Home')
         }
         console.log('user: ', await getStorage('user'))
         if (error){
@@ -36,9 +38,11 @@ export  class Login extends Component {
 
     }
 
+   
+
     render(){
         return(
-            <View>
+            <View style={styles.container}>
                 
                 <TextInput variant="standard" label="Email" style={{ margin: 16 }}
                 value={this.state.email}
@@ -48,7 +52,7 @@ export  class Login extends Component {
                 value={this.state.password}
                 onChangeText={(password)=>this.setState({password})}
                 />
-                <Button title="Login" onPress={this.handleLogin} />
+                <Button title="Login" onPress={this.handleLogin}/>
             </View>
             
         )
