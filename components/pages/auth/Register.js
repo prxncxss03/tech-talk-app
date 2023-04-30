@@ -4,7 +4,7 @@ import { TextInput, Button } from "@react-native-material/core";
 
 import { UserApi } from '../../../helper/api/user';
 
-
+import {styles} from './../../Style'
 export  class Register extends Component {
 
     constructor(){
@@ -37,25 +37,24 @@ export  class Register extends Component {
 
     render(){
         return(
-            <ScrollView>
-                <Text>
-                    Register
-                </Text>
+            <View style={styles.container}>
+             
+                <ScrollView>
                 
-                <TextInput variant="standard" label="First Name" style={{ margin: 16 }} 
+                <TextInput variant="standard" label="First Name" style={styles.input}
                 value={this.state.firstname}
                 onChangeText={(firstname)=>this.setState({firstname})}
                 />
-                <TextInput variant="standard" label="Last Name" style={{ margin: 16 }}
+                <TextInput variant="standard" label="Last Name" style={styles.input}
                 value={this.state.lastname}
                 onChangeText={(lastname)=>this.setState({lastname})}
                 />
-                <TextInput variant="standard" label="Email" style={{ margin: 16 }}
+                <TextInput variant="standard" label="Email" style={styles.input}
                 value={this.state.email}
                 
                 onChangeText={(email)=>this.setState({email})}
                 />
-                <TextInput variant="standard" label="Password" style={{ margin: 16 }}
+                <TextInput variant="standard" label="Password" style={styles.input}
                 value={this.state.password}
                 secureTextEntry={true}
                 onChangeText={(password)=>this.setState({password})}
@@ -63,7 +62,9 @@ export  class Register extends Component {
                 <Button title="Register" onPress={
                     this.handleRegister
                 } />
-            </ScrollView>
+                <Button title="Login" variant='text' onPress={()=>this.props.navigation.navigate('Login')}/>
+                </ScrollView>
+            </View>
             
         )
     }

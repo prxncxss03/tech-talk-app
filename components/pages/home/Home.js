@@ -11,12 +11,13 @@ import { UserApi } from "../../../helper/api/user";
 import { Button } from "@react-native-material/core";
 
 export class Home extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
 
         this.state= {
             modalVisible: false,
-            posts: []
+            posts: [],
+            isNewPost: false,
         }
     }
 
@@ -24,9 +25,6 @@ export class Home extends Component{
         this.handleGetAllPosts()
         
     }
-
-    
-
 
     handleGetAllPosts = async () =>{
         const postApi = new PostApi;
@@ -39,6 +37,19 @@ export class Home extends Component{
 
 
     }
+
+    componentDidUpdate(){
+        if (this.state.isNewPost){
+            this.handleGetAllPosts()
+            this.setState({isNewPost: false})
+        }
+    }
+
+    handleUpdatePost = (post) =>{
+        const posts = this.state.posts
+        posts.unshift(post)
+        this.setState({posts: posts})
+    }
     
     handleLogout = async () =>{
         const {navigation} = this.props
@@ -50,8 +61,7 @@ export class Home extends Component{
         }
         if (error){
             console.log(error)
-        }
-        
+        }     
              
     }
 
@@ -60,8 +70,6 @@ export class Home extends Component{
             <View style={styles.container}>
                 
                 <ScrollView>
-
-           
                 {
                     this.state.posts.map((post)=>{
                         //format created_at
@@ -80,9 +88,9 @@ export class Home extends Component{
                 <FloatingBtn onPress={()=>this.setState({modalVisible : true})}/>
                 <AddPost modalVisible={this.state.modalVisible} 
                 setModalVisible={()=>this.setState({modalVisible : false})}
-                updatePost={()=> {
-                    console.log('update post')
-                }} />
+                isNewPost={()=>this.setState({isNewPost: true})}
+                
+                ></AddPost>
                 <Button color="error" title="Logout" onPress={this.handleLogout} />
       
             </View>

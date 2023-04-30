@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
         marginTop: 20,
         margin: 4,
         backgroundColor: '#fff',
+        padding: 10,
     },
 
     postWrapper: {
@@ -30,12 +31,22 @@ export const styles = StyleSheet.create({
         right: 0,
         margin: 16,
     },
+
+    input:{
+        padding: 10,
+    },
         
     floatingBtn: {
         position: 'absolute',
         bottom: 10,
         right: 0,
-        margin: 16,
-
+        marginRight: 5,
+        marginBottom: 50,
+        
+        color: '#5aa55a',
+        backgroundColor: 'transparent',
+        width: 65,
+        height: 65,
+        borderRadius: 50,
     },
 });

@@ -12,7 +12,7 @@ export class FloatingBtn extends Component{
     render(){
         return(
             <TouchableOpacity style={styles.floatingBtn} onPress={this.props.onPress}>
-                <Ionicons name="add-circle" size={55} color="#5aa55a" style={styles.floatingBtn} />
+                <Ionicons name="add-circle" size={65} color="#5aa55a" />
             </TouchableOpacity>
           
         )

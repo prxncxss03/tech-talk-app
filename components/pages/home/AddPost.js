@@ -7,9 +7,9 @@ import {
   } from "@react-native-material/core";
 import { PostApi } from "../../../helper/api/post";
 
-  
 
 export class AddPost extends Component{
+   
 
     constructor(props){
         super(props);
@@ -28,14 +28,10 @@ export class AddPost extends Component{
        console.log('content : ', this.state.content)
        const [reponse, error] = await api.createPost({post: this.state.content})
         if (reponse){
-            console.log(reponse)
-            this.props.navigation.navigate('Home',{
-                post: reponse
-            })
-
+            this.props.isNewPost(true)
             this.setState({content: ''})
             this.props.setModalVisible(false)
-            this.props.updatePost(reponse)
+            
         }
         else{
             console.log(error)
@@ -64,7 +60,7 @@ export class AddPost extends Component{
                                 <TextInput label="Content" variant="standard" value={this.state.content} 
                                     onChangeText={(text)=> {
                                         this.setState({content: text})
-                                        console.log(text)
+                                      
                                     }}
                                 />
                             </Stack>
@@ -82,7 +78,7 @@ export class AddPost extends Component{
                                 variant="text"
                                 onPress={()=>{
                                     console.log(this.props)
-                                    this.props.navigation.navigate('Home')
+                                    this.handleAddPost()
                                 }}
                             />
                         </View>
