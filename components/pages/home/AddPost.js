@@ -24,6 +24,9 @@ export class AddPost extends Component{
 
     handleAddPost = async () => {
        console.log('I am inside add post')
+       if (this.state.content === ''){
+              return
+        }
        const api = new PostApi();
        console.log('content : ', this.state.content)
        const [reponse, error] = await api.createPost({post: this.state.content})
