@@ -2,30 +2,17 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 const Stack = createNativeStackNavigator();
-const HomeStack = createNativeStackNavigator();
+
 
 //components
 import { Home } from './components/pages/home/Home';
-import { getStorage } from './helper/api/storage';
+
 //pages
 import { Login } from './components/pages/auth/Login';
 import { Register } from './components/pages/auth/Register';
 import { AddPost } from './components/pages/home/AddPost';
 
 export default function App() {
-  
-
-  componentDidMount= ()=>{
-    console.log('I am inside app.js')
-  } 
-
-  const HomeStackScreen = () => {
-    <HomeStack.Navigator>
-      <HomeStack.Screen name="Home1" component={Home} />
-      <HomeStack.Screen name="AddPost" component={AddPost} />
-    </HomeStack.Navigator>
-  }
-
 
 
   return (
