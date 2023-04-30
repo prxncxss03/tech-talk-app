@@ -45,12 +45,7 @@ export class Home extends Component{
         }
     }
 
-    handleUpdatePost = (post) =>{
-        const posts = this.state.posts
-        posts.unshift(post)
-        this.setState({posts: posts})
-    }
-    
+   
     handleLogout = async () =>{
         const {navigation} = this.props
         const userApi = new UserApi;
